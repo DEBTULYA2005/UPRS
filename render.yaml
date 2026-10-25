@@ -1,0 +1,23 @@
+# Render Blueprint (optional). Defines the web service only; the database is
+# whichever PostgreSQL you point DATABASE_URL at (Supabase or Render Postgres).
+services:
+  - type: web
+    name: universal-recommendation-backend
+    runtime: python
+    plan: free
+    buildCommand: ./build.sh
+    startCommand: gunicorn config.wsgi:application --workers 2 --timeout 60
+    healthCheckPath: /api/health/
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.5
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false        # you paste your Supabase / Render Postgres URL in the dashboard
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false        # e.g. https://my-shop.example.com
+      - key: ALLOWED_HOSTS
+        value: localhost

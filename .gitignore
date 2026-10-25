@@ -1,0 +1,29 @@
+# secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# django
+staticfiles/
+*.sqlite3
+db.sqlite3
+*.log
+media/
+
+# editors / OS
+.idea/
+.vscode/
+.DS_Store
